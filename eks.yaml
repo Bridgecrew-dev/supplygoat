@@ -56,6 +56,11 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
         - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+      Tags:
+        - Key: yor_trace
+          Value: 6010a86b-8f79-4f30-af44-ee111a1e5851
+        - Key: nikhil
+          Value: owneremail.address.test.com
   VPC:
     Type: AWS::EC2::VPC
     Properties:
@@ -65,12 +70,20 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-VPC'
+        - Key: yor_trace
+          Value: 924d6b71-64ba-40e5-9446-9b93202d3628
+        - Key: nikhil
+          Value: owneremail.address.test.com
   InternetGateway:
     Type: "AWS::EC2::InternetGateway"
     Properties:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-Internet Gateway'
+        - Key: yor_trace
+          Value: 4dabcb79-0ea4-49ca-a635-9c37f3380590
+        - Key: nikhil
+          Value: owneremail.address.test.com
   VPCGatewayAttachment:
     Type: "AWS::EC2::VPCGatewayAttachment"
     Properties:
@@ -85,6 +98,10 @@ Resources:
           Value: Public Subnets
         - Key: Network
           Value: Public
+        - Key: yor_trace
+          Value: 48f5649d-71af-4770-9396-4d229204dd97
+        - Key: nikhil
+          Value: owneremail.address.test.com
   PrivateRouteTable01:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -94,6 +111,10 @@ Resources:
           Value: Private Subnet AZ1
         - Key: Network
           Value: Private01
+        - Key: nikhil
+          Value: owneremail.address.test.com
+        - Key: yor_trace
+          Value: dda40271-4c96-4454-906a-d9ccdcd2b4ba
   PrivateRouteTable02:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -103,6 +124,10 @@ Resources:
           Value: Private Subnet AZ2
         - Key: Network
           Value: Private02
+        - Key: yor_trace
+          Value: 9f3ff2c0-f84c-4317-83ef-32ddea9a5faf
+        - Key: nikhil
+          Value: owneremail.address.test.com
   PublicRoute:
     DependsOn:
     - VPCGatewayAttachment
@@ -141,6 +166,10 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-NatGatewayAZ1'
+        - Key: nikhil
+          Value: owneremail.address.test.com
+        - Key: yor_trace
+          Value: a64639fb-a69f-49ff-a2ce-1605bcfa6159
   NatGateway02:
     DependsOn:
     - NatGatewayEIP2
@@ -153,18 +182,32 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}-NatGatewayAZ2'
+        - Key: yor_trace
+          Value: c64cc50a-f6d4-40bd-9152-06a5363ae5ba
+        - Key: nikhil
+          Value: owneremail.address.test.com
   NatGatewayEIP1:
     DependsOn:
     - VPCGatewayAttachment
     Type: 'AWS::EC2::EIP'
     Properties:
       Domain: vpc
+      Tags:
+        - Key: yor_trace
+          Value: 00c3c210-0b67-4148-ab22-9244f45ce39b
+        - Key: nikhil
+          Value: owneremail.address.test.com
   NatGatewayEIP2:
     DependsOn:
     - VPCGatewayAttachment
     Type: 'AWS::EC2::EIP'
     Properties:
       Domain: vpc
+      Tags:
+        - Key: nikhil
+          Value: owneremail.address.test.com
+        - Key: yor_trace
+          Value: fd42bda5-99bf-4bec-bb97-b644e87697a4
   PublicSubnet01:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -182,6 +225,10 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-PublicSubnet01"
+        - Key: yor_trace
+          Value: bde5d702-218f-4dc3-9a4f-3b731a9babac
+        - Key: nikhil
+          Value: owneremail.address.test.com
   PublicSubnet02:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -199,6 +246,10 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-PublicSubnet02"
+        - Key: yor_trace
+          Value: 747c96e7-3555-496b-a8b2-2d6cf3a14646
+        - Key: nikhil
+          Value: owneremail.address.test.com
   PrivateSubnet01:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -218,6 +269,10 @@ Resources:
           Value: !Sub "${AWS::StackName}-PrivateSubnet01"
         - Key: "kubernetes.io/role/internal-elb"
           Value: "1"
+        - Key: yor_trace
+          Value: b6310d83-8a8b-4099-a9bb-935c67c8bf74
+        - Key: nikhil
+          Value: owneremail.address.test.com
   PrivateSubnet02:
     Type: AWS::EC2::Subnet
     Metadata:
@@ -237,6 +292,10 @@ Resources:
           Value: !Sub "${AWS::StackName}-PrivateSubnet02"
         - Key: "kubernetes.io/role/internal-elb"
           Value: "1"
+        - Key: yor_trace
+          Value: 2222c7ca-1e93-474f-85b6-d393a8ace26a
+        - Key: nikhil
+          Value: owneremail.address.test.com
   PublicSubnet01RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -262,6 +321,11 @@ Resources:
     Properties:
       GroupDescription: Cluster communication with worker nodes
       VpcId: !Ref VPC
+      Tags:
+        - Key: yor_trace
+          Value: e5695cc8-2973-4de7-9f07-62a81bfb8e17
+        - Key: nikhil
+          Value: owneremail.address.test.com
   EKSCluster:
     Type: AWS::EKS::Cluster
     Properties:
